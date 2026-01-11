@@ -3,26 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para mi Monita wonita 😚❤️</title>
+<title>¿Puedo ser tu novio?</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
 
 body{
     width:100vw;
-    height:100vh;
-    background: #ffe5ec; /* Fondo rosa pastel */
-    overflow: hidden;
+    min-height: 100vh;
+    background: #ffe5ec; /* Rosa Pastel */
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* PANTALLA INICIAL */
+#initial-screen {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-/* PREGUNTA INICIAL */
-#main-container {
+    z-index: 10;
     text-align: center;
-    z-index: 2;
 }
 
 #question {
@@ -32,7 +36,6 @@ body{
     font-weight: bold;
 }
 
-/* BOTONES */
 .btn-container {
     height: 120px;
     position: relative;
@@ -45,85 +48,76 @@ button {
     border-radius: 50px;
     font-size: 1.3rem;
     cursor: pointer;
-    transition: 0.3s;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-#yes {
-    background: #ff4d6d;
-    color: white;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
+#yes { background: #ff4d6d; color: white; position: absolute; left: 50%; transform: translateX(-50%); }
+#no { background: #adb5bd; color: white; position: absolute; left: 50%; top: 70px; transform: translateX(-50%); }
 
-#no {
-    background: #adb5bd;
-    color: white;
-    position: absolute;
-    left: 50%;
-    top: 70px;
-    transform: translateX(-50%);
-}
-
-/* CARTA DE AMOR (POST-SÍ) */
-#love-letter {
-    display: none;
-    width: 90%;
-    max-width: 600px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 25px;
-    border-radius: 20px;
-    text-align: center;
-    color: #c9184a;
-    z-index: 10;
-    max-height: 70vh;
-    overflow-y: auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-#letter-text {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-/* ELEMENTOS INFERIORES */
-#bottom-elements {
+/* CONTENIDO POST-ACEPTACIÓN */
+#final-content {
     display: none;
     width: 100%;
-    justify-content: space-around;
+    padding: 40px 20px;
+    flex-direction: column;
     align-items: center;
-    position: fixed;
-    bottom: 30px;
-    z-index: 10;
 }
 
-#bouquet {
-    font-size: 2.5rem;
-    line-height: 1.2;
-    animation: sway 3s ease-in-out infinite;
-}
-
-#counter {
-    background: white;
-    padding: 10px 20px;
+/* MARCO RECTANGULAR DE FLORES */
+#text-frame {
+    position: relative;
+    width: 95%;
+    max-width: 650px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 40px;
+    border: 5px solid #ffb3c1;
     border-radius: 15px;
-    font-size: 1rem;
+    color: #c9184a;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 100px; /* Espacio para obligar al scroll */
+}
+
+/* ESQUINAS CON FLORES Y BRILLOS */
+.corner {
+    position: absolute;
+    font-size: 2rem;
+    animation: pulse 2s infinite ease-in-out;
+}
+.top-left { top: -15px; left: -15px; }
+.top-right { top: -15px; right: -15px; }
+.bottom-left { bottom: -15px; left: -15px; }
+.bottom-right { bottom: -15px; right: -15px; }
+
+#letter-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+/* BLOQUE DEL CONTADOR */
+#counter-block {
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
     color: #ff4d6d;
     font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 50px;
 }
 
-@keyframes sway {
-    0%, 100% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
+/* ANIMACIONES */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
 }
 
-/* CONFETI DE CORAZONES */
 .confetti {
     position: fixed;
-    top: -20px;
+    top: -30px;
     font-size: 24px;
     z-index: 100;
     pointer-events: none;
@@ -134,7 +128,6 @@ button {
     to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 
-/* CORTINA INICIAL AL DAR SÍ */
 #curtain {
     position: fixed;
     inset: 0;
@@ -154,7 +147,7 @@ button {
 
 <div id="curtain">💗❤️💘🤍</div>
 
-<div id="main-container">
+<div id="initial-screen">
     <div id="question">¿Puedo ser tu novio?</div>
     <div class="btn-container">
         <button id="yes">Sí ✨</button>
@@ -162,27 +155,42 @@ button {
     </div>
 </div>
 
-<div id="love-letter">
-    <p id="letter-text">
-        Conmigo no existe el no, es un si o si 👀❤️, a partir de ahora tú y yo seremos novios hasta que nos podamos casar mi amorcito 🥺❤️💘, quiero que sepas que yo ya no te quiero, ahora yo a ti te amo y te amaré por décadas 🥹🫶🏻❤️, para mí eres una persona única y sumamente especial, eres el centro de mi universo, la estrella más brillante de las constelaciones, la mujer más bella y romántica de este mundo 😍❤️❤️❤️, quiero hacer bien las cosas contigo porque te quiero ahí en el futuro, quiero ser tu hombre, el hombre que realmente mereces, quiero cuidar con el mayor de los cuidados ese corazón tan dulce y sincero, quiero iluminar tus días más oscuros y abrazar tus inseguridades, quiero convertirme en tu hogar y lugar seguro, estaré siempre para ti, eso no lo va a cambiar no el tiempo ni las circunstancias, eres más que suficiente Nata, eres todo lo que quiero en esta vida así que permíteme ser tu novio que ya no aguanto las ganas de empezar a amarte bien amada, todos nos va a salir tal como lo queremos porque tú y yo somos mucho más que 2 almas destinadas a estar, te amo Monita mía, te amo te amo te amo te amo te amo te amo te amooooooooooooooooooooooooooooo 😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚🌹🌷🌹🌷🌹🌷🌹🌷🌹🌷🌹🌷🌹🌷🌹🌷🌹
-    </p>
-</div>
+<div id="final-content">
+    <div id="text-frame">
+        <div class="corner top-left">🌷🌹✨</div>
+        <div class="corner top-right">✨🌹🌷</div>
+        <div class="corner bottom-left">🌷🌹✨</div>
+        <div class="corner bottom-right">✨🌹🌷</div>
+        
+        <p id="letter-text">
+            Conmigo no existe el no, es un si o si 👀❤️, a partir de ahora tú y yo seremos novios hasta que nos podamos casar mi amorcito 🥺❤️💘.
+            
+            Quiero que sepas que yo ya no te quiero, ahora yo a ti te amo y te amaré por décadas 🥹🫶🏻❤️, para mí eres una persona única y sumamente especial, eres el centro de mi universo, la estrella más brillante de las constelaciones, la mujer más bella y romántica de este mundo 😍❤️❤️❤️.
+            
+            Quiero hacer bien las cosas contigo porque te quiero ahí en el futuro, quiero ser tu hombre, el hombre que realmente mereces, quiero cuidar con el mayor de los cuidados ese corazón tan dulce y sincero, quiero iluminar tus días más oscuros y abrazar tus inseguridades, quiero convertirme en tu hogar y lugar seguro.
+            
+            Estaré siempre para ti, eso no lo va a cambiar ni el tiempo ni las circunstancias, eres más que suficiente Nata, eres todo lo que quiero en esta vida así que permíteme ser tu novio que ya no aguanto las ganas de empezar a amarte bien amada.
+            
+            Todo nos va a salir tal como lo queremos porque tú y yo somos mucho más que 2 almas destinadas a estar.
+            
+            Te amo Monita mía, te amo te amo te amo te amo te amo te amo te amooooooooooooooooooooooooooooo 😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚🌹🌷🌹🌷🌹🌷🌹🌷🌹🌷🌹🌷🌹🌷🌹🌷🌹
+        </p>
+    </div>
 
-<div id="bottom-elements">
-    <div id="bouquet">🌷🌹🌷<br>🌹🌷🌹🌷<br>🎀</div>
-    <div id="counter">Llevamos 0 segundos de novios mi amorrr 😚😚😚❤️❤️❤️❤️❤️✨✨✨</div>
+    <div id="counter-block">
+        <div id="time-display">Llevamos 0 segundos de novios mi amorrr 😚😚😚❤️❤️❤️❤️❤️✨✨✨</div>
+    </div>
 </div>
 
 <script>
 const yesBtn = document.getElementById("yes");
 const noBtn = document.getElementById("no");
-const mainContainer = document.getElementById("main-container");
+const initialScreen = document.getElementById("initial-screen");
 const curtain = document.getElementById("curtain");
-const loveLetter = document.getElementById("love-letter");
-const bottomElements = document.getElementById("bottom-elements");
-const counterText = document.querySelector("#counter");
+const finalContent = document.getElementById("final-content");
+const timeDisplay = document.getElementById("time-display");
 
-// El botón NO se escapa
+// Botón No
 noBtn.onmouseover = noBtn.onclick = () => {
     const x = Math.random() * (window.innerWidth - 100);
     const y = Math.random() * (window.innerHeight - 50);
@@ -191,20 +199,20 @@ noBtn.onmouseover = noBtn.onclick = () => {
     noBtn.style.top = y + "px";
 };
 
-// Acción al dar SÍ
+// Botón Sí
 yesBtn.onclick = () => {
-    // 1. Mostrar cortina de corazones momentánea
     curtain.style.transform = "translateY(0)";
     
-    // Iniciar lluvia de corazones infinita
+    // Lluvia de corazones
     setInterval(createConfetti, 300);
 
     setTimeout(() => {
-        // 2. Ocultar pregunta y mostrar contenido final
-        mainContainer.style.display = "none";
+        initialScreen.style.display = "none";
         curtain.style.transform = "translateY(-100%)";
-        loveLetter.style.display = "block";
-        bottomElements.style.display = "flex";
+        finalContent.style.display = "flex";
+        
+        // Habilitar el scroll
+        document.body.style.overflowY = "auto";
         
         startCounter();
     }, 1200);
@@ -225,7 +233,7 @@ function startCounter() {
     let s = 0;
     setInterval(() => {
         s++;
-        counterText.textContent = `Llevamos ${s} segundos de novios mi amorrr 😚😚😚❤️❤️❤️❤️❤️✨✨✨`;
+        timeDisplay.textContent = `Llevamos ${s} segundos de novios mi amorrr 😚😚😚❤️❤️❤️❤️❤️✨✨✨`;
     }, 1000);
 }
 </script>
