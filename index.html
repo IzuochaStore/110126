@@ -3,222 +3,230 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>¿Puedo ser tu novio?</title>
+<title>Para mi Monita wonita 😚❤️</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui;}
+*{margin:0;padding:0;box-sizing:border-box;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
 
 body{
     width:100vw;
     height:100vh;
-    background:linear-gradient(#9bdcff,#eaf6ff);
-    overflow:hidden;
+    background: #ffe5ec; /* Fondo rosa pastel */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-/* PREGUNTA */
-#question, #freeText{
-    position:fixed;
-    top:12%;
-    width:100%;
-    text-align:center;
-    font-size:2rem;
-    color:#c9184a;
+/* PREGUNTA INICIAL */
+#main-container {
+    text-align: center;
+    z-index: 2;
 }
-#freeText{display:none;font-size:1.5rem}
+
+#question {
+    font-size: 2.5rem;
+    color: #c9184a;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
 
 /* BOTONES */
-#buttons{
-    position:fixed;
-    top:30%;
-    width:100%;
-    height:150px;
-}
-button{
-    position:absolute;
-    padding:14px 30px;
-    border:none;
-    border-radius:30px;
-    font-size:1.2rem;
-}
-#yes{
-    background:#ff4d6d;
-    color:white;
-    left:50%;
-    transform:translateX(-50%);
-}
-#no{
-    background:#adb5bd;
-    color:white;
-    left:50%;
-    top:70px;
-    transform:translateX(-50%);
+.btn-container {
+    height: 120px;
+    position: relative;
+    width: 300px;
 }
 
-/* CONFETI */
-.confetti{
-    position:fixed;
-    top:-20px;
-    font-size:22px;
-    animation:fall linear forwards;
-}
-@keyframes fall{
-    to{transform:translateY(110vh) rotate(360deg);opacity:0}
-}
-
-/* CORTINA */
-#curtain{
-    position:fixed;
-    inset:0;
-    background:#fff0f3;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:3rem;
-    z-index:10;
-    transform:translateY(-100%);
-    transition:1s;
+button {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* TIERRA */
-#ground{
-    position:fixed;
-    bottom:0;
-    width:100%;
-    height:110px;
-    z-index:5;
-}
-#soil{
-    height:60px;
-    background:#8d5524;
-    border-top:6px solid #2d6a4f;
+#yes {
+    background: #ff4d6d;
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-/* SEMILLA */
-#sprout{
-    position:fixed;
-    top:-30px;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:2rem;
-    display:none;
-    z-index:4;
-    animation:drop 2.5s forwards;
-}
-@keyframes drop{
-    to{top:calc(100vh - 100px)}
+#no {
+    background: #adb5bd;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 70px;
+    transform: translateX(-50%);
 }
 
-/* RAMO */
-#bouquet{
-    position:fixed;
-    bottom:60px;
-    left:20px;
-    display:none;
-    z-index:6;
-    animation:wind 3s ease-in-out infinite;
-}
-@keyframes wind{
-    0%,100%{transform:rotate(0deg)}
-    50%{transform:rotate(2deg)}
+/* CARTA DE AMOR (POST-SÍ) */
+#love-letter {
+    display: none;
+    width: 90%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    color: #c9184a;
+    z-index: 10;
+    max-height: 70vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-/* CONTADOR */
-#counter{
-    position:fixed;
-    bottom:90px;
-    left:160px;
-    font-size:1rem;
-    color:#1b4332;
-    display:none;
+#letter-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* ELEMENTOS INFERIORES */
+#bottom-elements {
+    display: none;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 30px;
+    z-index: 10;
+}
+
+#bouquet {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    animation: sway 3s ease-in-out infinite;
+}
+
+#counter {
+    background: white;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-size: 1rem;
+    color: #ff4d6d;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+/* CONFETI DE CORAZONES */
+.confetti {
+    position: fixed;
+    top: -20px;
+    font-size: 24px;
+    z-index: 100;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* CORTINA INICIAL AL DAR SÍ */
+#curtain {
+    position: fixed;
+    inset: 0;
+    background: #fff0f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    z-index: 200;
+    transform: translateY(-100%);
+    transition: 1s ease-in-out;
 }
 </style>
 </head>
 
 <body>
 
-<div id="question">¿Puedo ser tu novio?</div>
-<div id="freeText">💬 Texto libre aquí</div>
-
-<div id="buttons">
-    <button id="yes">Sí ✨</button>
-    <button id="no">No 😅</button>
-</div>
-
 <div id="curtain">💗❤️💘🤍</div>
 
-<div id="sprout">🌱</div>
-
-<div id="bouquet">
-    <div style="text-align:center;font-size:1.6rem;line-height:1.3">
-        🌷🌹<br>
-        🌹🌷🌹🌷<br>
-        🌷🌹🌷🌹🌷🌹<br>
-        🎀
+<div id="main-container">
+    <div id="question">¿Puedo ser tu novio?</div>
+    <div class="btn-container">
+        <button id="yes">Sí ✨</button>
+        <button id="no">No 😅</button>
     </div>
 </div>
 
-<div id="counter">
-    <div id="time">Llevamos 0 segundos de novios 🎉🎉🎉❤️❤️❤️❤️❤️🥳🥳🥳</div>
+<div id="love-letter">
+    <p id="letter-text">
+        Conmigo no existe el no, es un si o si 👀❤️, a partir de ahora tú y yo seremos novios hasta que nos podamos casar mi amorcito 🥺❤️💘, quiero que sepas que yo ya no te quiero, ahora yo a ti te amo y te amaré por décadas 🥹🫶🏻❤️, para mí eres una persona única y sumamente especial, eres el centro de mi universo, la estrella más brillante de las constelaciones, la mujer más bella y romántica de este mundo 😍❤️❤️❤️, quiero hacer bien las cosas contigo porque te quiero ahí en el futuro, quiero ser tu hombre, el hombre que realmente mereces, quiero cuidar con el mayor de los cuidados ese corazón tan dulce y sincero, quiero iluminar tus días más oscuros y abrazar tus inseguridades, quiero convertirme en tu hogar y lugar seguro, estaré siempre para ti, eso no lo va a cambiar no el tiempo ni las circunstancias, eres más que suficiente Nata, eres todo lo que quiero en esta vida así que permíteme ser tu novio que ya no aguanto las ganas de empezar a amarte bien amada, todos nos va a salir tal como lo queremos porque tú y yo somos mucho más que 2 almas destinadas a estar, te amo Monita mía, te amo te amo te amo te amo te amo te amo te amooooooooooooooooooooooooooooo 😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚🌹🌷🌹🌷🌹🌷🌹🌷🌹🌷🌹🌷🌹🌷🌹🌷🌹
+    </p>
 </div>
 
-<div id="ground"><div id="soil"></div></div>
+<div id="bottom-elements">
+    <div id="bouquet">🌷🌹🌷<br>🌹🌷🌹🌷<br>🎀</div>
+    <div id="counter">Llevamos 0 segundos de novios mi amorrr 😚😚😚❤️❤️❤️❤️❤️✨✨✨</div>
+</div>
 
 <script>
-const yes=document.getElementById("yes");
-const no=document.getElementById("no");
-const buttons=document.getElementById("buttons");
-const question=document.getElementById("question");
-const freeText=document.getElementById("freeText");
-const curtain=document.getElementById("curtain");
-const sprout=document.getElementById("sprout");
-const bouquet=document.getElementById("bouquet");
-const counter=document.getElementById("counter");
-const time=document.getElementById("time");
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+const mainContainer = document.getElementById("main-container");
+const curtain = document.getElementById("curtain");
+const loveLetter = document.getElementById("love-letter");
+const bottomElements = document.getElementById("bottom-elements");
+const counterText = document.querySelector("#counter");
 
-no.onclick=()=>{
-    no.style.left=Math.random()*70+"%";
-    no.style.top=Math.random()*100+"px";
+// El botón NO se escapa
+noBtn.onmouseover = noBtn.onclick = () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.position = "fixed";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
 };
 
-yes.onclick=()=>{
-    buttons.style.display="none";
-    question.style.display="none";
-    freeText.style.display="block";
+// Acción al dar SÍ
+yesBtn.onclick = () => {
+    // 1. Mostrar cortina de corazones momentánea
+    curtain.style.transform = "translateY(0)";
+    
+    // Iniciar lluvia de corazones infinita
+    setInterval(createConfetti, 300);
 
-    confetti();
-
-    curtain.style.transform="translateY(0)";
-    setTimeout(()=>{
-        curtain.style.display="none";
-        sprout.style.display="block";
-    },1000);
-
-    setTimeout(()=>{
-        bouquet.style.display="block";
-        counter.style.display="block";
+    setTimeout(() => {
+        // 2. Ocultar pregunta y mostrar contenido final
+        mainContainer.style.display = "none";
+        curtain.style.transform = "translateY(-100%)";
+        loveLetter.style.display = "block";
+        bottomElements.style.display = "flex";
+        
         startCounter();
-    },4500);
+    }, 1200);
 };
 
-function confetti(){
-    const e=["💗","❤️","💘","🤍"];
-    for(let i=0;i<60;i++){
-        const c=document.createElement("div");
-        c.className="confetti";
-        c.textContent=e[Math.floor(Math.random()*4)];
-        c.style.left=Math.random()*100+"vw";
-        c.style.animationDuration=(Math.random()*2+2)+"s";
-        document.body.appendChild(c);
-        setTimeout(()=>c.remove(),4000);
-    }
+function createConfetti() {
+    const hearts = ["💗","❤️","💘","🤍","💖"];
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDuration = (Math.random() * 2 + 3) + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 5000);
 }
 
-function startCounter(){
-    let s=0;
-    setInterval(()=>{
+function startCounter() {
+    let s = 0;
+    setInterval(() => {
         s++;
-        time.textContent=`Llevamos ${s} segundos de novios 🎉🎉🎉❤️❤️❤️❤️❤️🥳🥳🥳`;
-    },1000);
+        counterText.textContent = `Llevamos ${s} segundos de novios mi amorrr 😚😚😚❤️❤️❤️❤️❤️✨✨✨`;
+    }, 1000);
 }
 </script>
 
